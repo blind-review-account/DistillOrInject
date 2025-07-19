@@ -1,0 +1,3 @@
+wandb_api_key: "385415558c3158b1e1f8b4dbccadb9ea0a301fcf"
+entity: "taoufik-k-idrissi-polytechnique-montr-al"
+log_wandb : True

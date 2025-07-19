@@ -1,0 +1,9 @@
+model_name: "microsoft/unixcoder-base-nine"
+data_path: "/network/scratch/l/luansito/data/data/Project_CodeNet/java250/"
+use_model_subfolder : True
+batch_size: 64
+stride: 64
+clean: True
+pos_dim: 32
+use_posenc: True
+

@@ -1,0 +1,60 @@
+extractor_name : "microsoft/codebert-base"  
+name_suffix : "high_lr_high_dropout_layernorm"
+use_model_subfolder : True
+
+random_seed:
+    random_seed: 42 
+    
+model: 
+    n_emb: 250
+    pos_dim: 32
+    in_dim: 801
+    emb_h_dim: 1024
+    emb_out_dim: 1024
+    gnn_h_dim: 1024
+    dropout: 0.35
+    num_classes: 2
+    gnn_type: "GAT"
+    gnn_args:
+        depth: 4
+        heads: 8
+        activation : "ReLU"
+        negative_slope : 0.2
+        use_norm: True
+        norm_type : "layer_norm"
+    cls_pooling_method: "attentional"
+    device: "cuda"
+
+scheduler:
+    max_lr: 1e-3
+    min_lr: 1e-4
+    pct_start: 0.35
+    anneal_strategy: "cos"
+
+optimizer:
+    weight_decay: 4e-5
+
+data_loader:
+    huggingface_data_path: "DetectVul/devign"
+    dataset_path: "/network/scratch/l/luansito/data/data/devign/"
+    train_split_key : "train"
+    valid_split_key : "validation"
+    test_split_key : "test"
+    id_key : "id"
+    label_key : "target"
+    pt_suffix : ".pt"
+    label_mode : "one_hot"
+    batch_size: 64
+    shuffle : True
+    
+    
+training_params:
+    epochs: 20
+    patience: 10
+    delta: 0.0
+    max_grad_norm: 3.0
+    model_name: "GAT_depth4_inject_microsoft_codebert"
+    project_name: "Inject - Devign"
+    save_dir: "./experimental_results/devign/Inject/microsoft_codebert_base/"
+    save_model: True
+    save_history: True

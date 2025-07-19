@@ -1,0 +1,12 @@
+use_model_subfolder : True
+huggingface_data_path: "DetectVul/devign"
+saving_path: "/network/scratch/l/luansito/data/data/devign/"
+key_of_interest: "func"
+split_keys: ["train", "validation", "test"]
+id_key: "id"
+lang:  "c"
+batch_size: 32
+stride: 32
+clean: True
+pos_dim: 32
+use_posenc: True

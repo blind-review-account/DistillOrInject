@@ -1,0 +1,54 @@
+extractor_name : "microsoft/codebert-base"  
+name_suffix : "kim_run"
+use_model_subfolder : True
+
+random_seed:
+    random_seed: 42
+    
+model: 
+    n_emb: 250
+    pos_dim: 32
+    in_dim: 801
+    emb_h_dim: 1024
+    emb_out_dim: 1024
+    gnn_h_dim: 1024
+    dropout: 0.40
+    num_classes: 250
+    gnn_type: "GCN"
+    gnn_args:
+        depth: 4
+        activation : "ReLU"
+        negative_slope : 0.2
+        use_norm: True
+        norm_type : "graph_norm"
+    cls_pooling_method: "attentional"
+    device: "cuda"
+    
+scheduler:
+    max_lr: 1e-3
+    min_lr: 1e-4
+    pct_start: 0.35
+    anneal_strategy: "cos"
+
+optimizer:
+    weight_decay: 4e-5
+
+data_loader:
+    dataset_path : "/network/scratch/l/luansito/data/data/Project_CodeNet/java250/"
+    batch_size: 96
+    orig_suffix : ".java"
+    pt_suffix: ".pt"
+    label_mode: "one_hot"    
+    shuffle : True
+    
+    
+training_params:
+    epochs: 40
+    patience: 5
+    delta: 0.0
+    max_grad_norm: 3.0
+    project_name: "Inject - Java250"
+    save_dir: "./experimental_results/java250/Inject/"
+    save_model: True
+    save_history: True
+
